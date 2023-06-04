@@ -88,13 +88,15 @@
   </main>
 
   <script>
+    
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
-      let output = document.querySelector('output');
+      //let output = document.querySelector('output');
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
+      let output = document.querySelector('output');
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
 
@@ -102,6 +104,81 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    const logButton = errorBtns[0];
+    const errorButton = errorBtns[1];
+    const countButton = errorBtns[2];
+    const warnButton = errorBtns[3];
+    const assertButton = errorBtns[4];
+    const clearButton = errorBtns[5];
+    const dirButton = errorBtns[6];
+    const dirxmlButton = errorBtns[7];
+    const groupStartButton = errorBtns[8];
+    const groupEndButton = errorBtns[9];
+    const tableButton = errorBtns[10];
+    const startTimerButton = errorBtns[11];
+    const endTimerButton = errorBtns[12];
+    const traceButton = errorBtns[13];
+    const triggerButton = errorBtns[14];
+
+    // Step 2
+    logButton.addEventListener('click', function(){console.log("Console log");});
+    errorButton.addEventListener('click', function(){console.error("Console error");});
+    countButton.addEventListener('click', function(){console.count();});
+    
+    warnButton.addEventListener('click', function(){console.warn("Console warn");});
+    assertButton.addEventListener('click', function(){console.assert(2 == 3, "The number does not equal 3");});
+    clearButton.addEventListener('click', function(){console.clear();});
+
+    dirButton.addEventListener('click', function(){console.dir({"something":1});});
+    dirxmlButton.addEventListener('click', function(){console.dirxml({"something":2});});    
+    groupStartButton.addEventListener('click', function(){console.group();});
+
+    groupEndButton.addEventListener('click', function(){console.groupEnd();});
+    tableButton.addEventListener('click', function(){console.table([1,2,3]);});
+    startTimerButton.addEventListener('click', function(){console.time();});
+
+    endTimerButton.addEventListener('click', function(){console.timeEnd();});
+    traceButton.addEventListener('click', function(){console.trace();});
+    triggerButton.addEventListener('click', function(){return string;});
+
+    // Step 4
+    class ChangingValueError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "ChangingValueError";
+      }
+    }
+
+    // Step 3
+    const integer = 3;
+    try{
+      integer = 4;
+    }
+    catch(e){
+      throw new ChangingValueError(e);
+    }
+    finally{
+      console.log("finished");
+    }
+
+    // Step 5
+    window.onerror = function(error){
+      console.log("received error: ", error);
+      console.log("entered window.onerror");
+      fetch("https://www.google.com/", {
+        method: 'POST',
+        body: "error"
+      });
+      console.log("after fetch");
+      return true;
+    }
+  </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "421a5141503c4922ac9d397446160af6"
+      // for more configuration options, see https://docs.trackjs.com
+    });
   </script>
 </body>
 
