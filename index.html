@@ -136,8 +136,8 @@
     assertButton.addEventListener('click', function(){console.assert(2 == 3, "The number does not equal 3");});
     clearButton.addEventListener('click', function(){console.clear();});
 
-    dirButton.addEventListener('click', function(){console.dir({"something":1});});
-    dirxmlButton.addEventListener('click', function(){console.dirxml({"something":2});});    
+    dirButton.addEventListener('click', function(){console.dir(dirButton);});
+    dirxmlButton.addEventListener('click', function(){console.dirxml(dirxmlButton);});    
     groupStartButton.addEventListener('click', function(){console.group();});
 
     groupEndButton.addEventListener('click', function(){console.groupEnd();});
